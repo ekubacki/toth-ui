@@ -59,18 +59,18 @@ function SignIn(props) {
           Sign in
         </Typography>
         <form className={classes.form}>
+        <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="firstName">First Name</InputLabel>
+            <Input id="firstName" name="First Name" autoComplete="givern-Name" autoFocus />
+          </FormControl>
           <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="lastName">Last Name</InputLabel>
+            <Input id="lastName" name="Last Name" autoComplete="family-Name" autoFocus />
+          </FormControl>
+          <FormControl margin="normal" fullWidth>
             <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus />
+            <Input id="email" name="email" autoComplete="lastName" autoFocus />
           </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input name="password" type="password" id="password" autoComplete="current-password" />
-          </FormControl>
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
           <Button
             type="submit"
             fullWidth
@@ -78,7 +78,7 @@ function SignIn(props) {
             color="primary"
             className={classes.submit}
           >
-            Sign in
+            Sign in / Sign up
           </Button>
         </form>
       </Paper>

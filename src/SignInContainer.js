@@ -3,15 +3,20 @@ import SignInForm from './SignInForm';
 
 export default class SignInContainer extends React.Component {
     handleSubmit(firstName, lastName, email) {
-        fetch('http://localhost:8080/TastingOfTheHops/account/signup', {
-            method: 'post',
+        console.log("hello");
+        fetch('http://127.0.0.1:8080/TastingOfTheHops/account/signup', {
+            method: 'POST',
+            headers: {
+                "Content-Type" : "application/json",
+            },
+            mode : "cors",
             body: JSON.stringify({
                 firstName : firstName,
                 lastName : lastName,
                 email : email
-            })}
-        ).then(function(response) {
-            return response.json();
+            })
+        }).then(function(response) {
+            console.log(response.json());
         }).then(function(data) {
             console.log(data);
         });

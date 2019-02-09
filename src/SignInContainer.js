@@ -29,13 +29,11 @@ export default class SignInContainer extends React.Component {
         }).then(function(response) {
             if(response.ok) {
                 response.json().then(function(object) {
-                    console.log('success', object);
-                    console.log("user", user);
                     self.props.onSignIn(user);
                 });      
             } else {
                 response.json().then(function(object) {
-                    console.log('error', object);
+                    console.log('error', object);   //Need to finish handling this.
                 });
             }
         }).catch(function(error) {
@@ -49,3 +47,4 @@ export default class SignInContainer extends React.Component {
         );        
     }
 }
+

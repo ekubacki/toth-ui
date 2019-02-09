@@ -11,26 +11,33 @@ export default class App extends React.Component {
                 email: ''
             }
         };
+        this.logOut = this.logOut.bind(this);
     }
 
     handleSignIn(user) {
-        console.log("saving state in container");
         this.setState({user: user});
+        localStorage.setItem('user', user);
     }
 
-      
-    render() {
-        if(!this.state.user.firstName) {
-            console.log("have not signed up yet");
+    render() {    
+        if(!localStorage.getItem('user')) {
             return (
                 <SignInContainer onSignIn={this.handleSignIn.bind(this)}/>
             );        
         } else {
-            console.log("User was signed up");;
             return (
-                <div>Correctly Signed up</div>
-                //<TastingContainer />
+                //TODO: Show a quick and dirty rest button for now
+                <div>
+                    <div>Correctly Signed up</div>
+                    <button type="button" onClick={this.logOut} >Log out</button>
+                </div>
             )
         }
+    }
+
+    //This is a quick and dirty reset button :)
+    logOut() {
+        localStorage.clear();
+        this.setState({user: {}});
     }
 }

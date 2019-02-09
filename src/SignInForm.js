@@ -84,7 +84,7 @@ class SignInForm extends React.Component {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Who Are You?
           </Typography>
           <form className={classes.form}>
             <FormControl margin="normal" required fullWidth>

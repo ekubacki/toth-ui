@@ -32,8 +32,9 @@ export default class SignInContainer extends React.Component {
                     self.props.onSignIn(user);
                 });      
             } else {
-                response.json().then(function(object) {
-                    console.log('error', object);   //Need to finish handling this.
+                response.json().then(function(error) {
+                    self.setState({error: error})
+                    console.log('error', error);   //Need to finish handling this.
                 });
             }
         }).catch(function(error) {

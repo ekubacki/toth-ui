@@ -11,12 +11,10 @@ class TastingForm extends React.Component {
     };
 
     getTastings() {
-        console.log("form tasting data", JSON.stringify(this.props.getTastingsData()));
+        this.props.getTastingsData();
     };
 
     render() {
-        console.log("in rendor");
-        console.log("state tastingData: ", this.props.tastingData.tastingsResponse);
         if (!this.props.tastingData.tastingsResponse) {
             return (
                 <div>
@@ -28,21 +26,19 @@ class TastingForm extends React.Component {
         } else {
             return (
                 <div>
-                    <div>Correctly Signed up</div>
-                    <ul>
+                    <div><h1>Tastings</h1></div>
                         {this.props.tastingData.tastingsResponse.map(
                             function(tastings){
                                 return (
-                                    <li>
-                                        <ul>
-                                            <div>Beer: {tastings.beerName}</div>
-                                            <div>Brewery: {tastings.brewery}</div>
-                                            <div>Who Brought the Beer: {tastings.displayNames.map(function(name){return (<div>{name}</div>);})}</div>
-                                        </ul>
-                                    </li>
+                                    <div>
+                                        <div>Beer: {tastings.beerName}</div>
+                                        <div>Brewery: {tastings.brewery}</div>
+                                        <div>Who Brought the Beer: {tastings.displayNames.map(function(name){return (<div>{name}</div>);})}</div>
+                                        <br />
+                                    </div>    
                                 );
-                            })}
-                    </ul>
+                            })
+                        }
                     <button type="button" onClick={this.logOut} >Log out</button>
                 </div>
             );

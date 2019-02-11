@@ -4,28 +4,18 @@ import TastingForm from './TastingForm.js';
 export default class TastingContainer extends React.Component {
     constructor(props) {
         super(props);
-
-        // {
-        //     "tastingsResponse": [
-        //         {
-        //             "displayNames": [
-        //                 "Eric Kubacki"
-        //             ],
-        //             "beerName": "The Good Stuff",
-        //             "brewery": "This is a test brewery"
-        //         },
-        //         {
-        //             "displayNames": [
-        //                 "Eric Kubacki"
-        //             ],
-        //             "beerName": "The Good Stuff part 2",
-        //             "brewery": "this is a test brewery"
-        //         }
-        //     ]
-        // }
-
-
         this.state = {tastingData : []};
+
+        //TODO: If I put the below code in place it's not correctly working ... why?
+        // this.state = {
+        //     tastingData : {
+        //         tastingsResponse: [{
+        //             displayNames: [],
+        //             beerName: '',
+        //             brewery: ''
+        //         }]
+        //     }
+        // };
     };
 
     getTastings() {
@@ -36,7 +26,6 @@ export default class TastingContainer extends React.Component {
         }).then(function(response) {
             return response.json();
         }).then(function(tastingData) {
-            console.log("tasting data", tastingData);
             self.setState({tastingData: tastingData});
         });
     }

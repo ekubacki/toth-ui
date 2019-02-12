@@ -1,6 +1,6 @@
 import * as React from 'react';
-import SignInContainer from './SignInContainer.js';
-import TastingContainer from './TastingContainer.js';
+import SignInContainer from './components/SignInContainer';
+import TastingContainer from './components/TastingContainer';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -15,8 +15,8 @@ export default class App extends React.Component {
     }
 
     handleSignIn(user) {
-        this.setState({user: user});
         localStorage.setItem('user', user);
+        this.setState({user: user});
     }
 
     render() {    

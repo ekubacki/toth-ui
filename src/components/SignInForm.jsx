@@ -93,11 +93,11 @@ class SignInForm extends React.Component {
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="lastName">Last Name</InputLabel>
-              <Input id="lastName" name="Last Name" value={this.state.lastName} onChange={this.handleLastNameChange} autoComplete="family-Name" autoFocus />
+              <Input id="lastName" name="Last Name" value={this.state.lastName} onChange={this.handleLastNameChange} autoComplete="family-Name"  />
             </FormControl>
             <FormControl margin="normal" fullWidth>
               <InputLabel htmlFor="email">Email Address</InputLabel>
-              <Input id="email" name="email" value={this.state.email} onChange={this.handleEmailChange} autoComplete="email" autoFocus />
+              <Input id="email" name="email" value={this.state.email} onChange={this.handleEmailChange} autoComplete="email"  />
             </FormControl>
             <Button
               type="submit"

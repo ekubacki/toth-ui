@@ -28,12 +28,12 @@ class TastingForm extends React.Component {
                 <div>
                     <div><h1>Tastings</h1></div>
                         {this.props.tastingData.tastingsResponse.map(
-                            function(tastings){
+                            function(tastings, index){
                                 return (
-                                    <div>
+                                    <div key={index}>
                                         <div>Beer: {tastings.beerName}</div>
                                         <div>Brewery: {tastings.brewery}</div>
-                                        <div>Who Brought the Beer: {tastings.displayNames.map(function(name){return (<div>{name}</div>);})}</div>
+                                        <div>Who Brought the Beer: {tastings.displayNames.map(function(name, index){return (<span key={index}>{name}</span>);})}</div>
                                         <br />
                                     </div>    
                                 );
@@ -52,6 +52,7 @@ class TastingForm extends React.Component {
         console.log("Logging out a user", this.props.user);
         localStorage.clear();
         this.setState({user: {}});
+        window.location.href = "/"
     }
 }
 

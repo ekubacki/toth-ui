@@ -1,21 +1,15 @@
 import * as React from 'react';
-import TastingForm from './TastingForm.js';
+import TastingForm from './TastingForm';
 
 export default class TastingContainer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {tastingData : []};
+        //this.state = {tastingData : []};
 
         //TODO: If I put the below code in place it's not correctly working ... why?
-        // this.state = {
-        //     tastingData : {
-        //         tastingsResponse: [{
-        //             displayNames: [],
-        //             beerName: '',
-        //             brewery: ''
-        //         }]
-        //     }
-        // };
+        this.state = {
+            tastingData : {tastingResponse:[]}
+        };
     };
 
     getTastings() {

@@ -1,33 +1,30 @@
-import * as React from 'react';
-import TastingForm from './TastingForm';
+import * as React from "react";
+import TastingsList from "./TastingsList";
+import { getTastings } from "../utils/api";
 
 export default class TastingContainer extends React.Component {
-    constructor(props) {
-        super(props);
-        //this.state = {tastingData : []};
+  constructor(props) {
+    super(props);
+    //this.state = {tastingData : []};
 
-        //TODO: If I put the below code in place it's not correctly working ... why?
-        this.state = {
-            tastingData : {tastingResponse:[]}
-        };
+    //TODO: If I put the below code in place it's not correctly working ... why?
+    this.state = {
+      tastings: []
     };
+  }
 
-    getTastings() {
-        const self = this;
-        fetch('http://127.0.0.1:8080/TastingOfTheHops/tasting/tastings', {
-            method: 'GET',
-            mode : "cors",
-        }).then(function(response) {
-            return response.json();
-        }).then(function(tastingData) {
-            self.setState({tastingData: tastingData});
-        });
-    }
+  componentDidMount() {
+    getTastings()
+      .then(response => {
+        this.setState({ tastings: response.tastingsResponse});
+        console.log(this.state)
+      })
+      .catch(e => {
+        this.setState({ error: e.payload });
+      });
+  }
 
-    render() {;
-        return (
-            <TastingForm getTastingsData={this.getTastings.bind(this)} tastingData={this.state.tastingData}/>
-        );
-    }
+  render() {
+    return <TastingsList tastings={this.state.tastings} />;
+  }
 }
-

@@ -1,6 +1,7 @@
 import * as React from "react";
 import SignInContainer from "./components/SignInContainer";
 import TastingContainer from "./components/TastingContainer";
+import AppBar from './components/AppBar';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -24,6 +25,11 @@ export default class App extends React.Component {
     if (!localStorage.getItem("user")) {
       return <SignInContainer onSignIn={this.handleSignIn.bind(this)} />;
     }
-    return <TastingContainer user={this.state.user} />;
+    return (
+      <div>
+        <AppBar />
+        <TastingContainer user={this.state.user} />
+      </div>
+    );
   }
 }

@@ -131,7 +131,6 @@ class SignInForm extends React.Component {
               />
             </FormControl>
             <Button
-              type="submit"
               fullWidth
               variant="contained"
               color="primary"

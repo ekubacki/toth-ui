@@ -1,5 +1,6 @@
 import * as React from "react";
 import TastingsList from "./TastingsList";
+import Loading from './Loading';
 import { getTastings } from "../utils/api";
 
 export default class TastingContainer extends React.Component {
@@ -9,14 +10,15 @@ export default class TastingContainer extends React.Component {
 
     //TODO: If I put the below code in place it's not correctly working ... why?
     this.state = {
-      tastings: []
+      tastings: [],
+      loading: true
     };
   }
 
   componentDidMount() {
     getTastings()
       .then(response => {
-        this.setState({ tastings: response.tastingsResponse});
+        this.setState({ tastings: response.tastingsResponse, loading: false });
         console.log(this.state)
       })
       .catch(e => {
@@ -25,6 +27,12 @@ export default class TastingContainer extends React.Component {
   }
 
   render() {
-    return <TastingsList tastings={this.state.tastings} />;
+    // TODO: Push this down into the TastingsList...NO DISPLAY IN CONTAINERS
+    return (
+      <div>
+        {this.state.loading ? <Loading /> : <div/>}
+        <TastingsList tastings={this.state.tastings} />
+      </div>
+    );   
   }
 }

@@ -14,6 +14,16 @@ export default class App extends React.Component {
         email: ""
       }
     };
+
+    this.handleSignIn = this.handleSignIn.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
+  }
+
+  componentDidMount() {
+    const user = localStorage.getItem("user")
+    if(user) {
+      this.setState({user})
+    }
   }
 
   handleSignIn(user) {
@@ -21,13 +31,18 @@ export default class App extends React.Component {
     this.setState({ user: user });
   }
 
+  handleLogout() {
+    localStorage.clear();
+    window.location.href = "/";
+  }
+
   render() {
     if (!localStorage.getItem("user")) {
-      return <SignInContainer onSignIn={this.handleSignIn.bind(this)} />;
+      return <SignInContainer onSignIn={this.handleSignIn} />;
     }
     return (
       <div>
-        <AppBar />
+        <AppBar user={this.state.user} logout={this.handleLogout}/>
         <TastingContainer user={this.state.user} />
       </div>
     );

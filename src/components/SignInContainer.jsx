@@ -19,7 +19,7 @@ export default class SignInContainer extends React.Component {
         this.props.onSignIn(user);
       })
       .catch(error => {
-        console.log(error);
+        this.setState({error: error.payload})
       });
   }
 

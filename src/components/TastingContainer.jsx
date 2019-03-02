@@ -1,6 +1,7 @@
 import * as React from "react";
 import TastingsList from "./TastingsList";
 import Loading from './Loading';
+import AddTastingForm from './AddTastingForm'
 import { getTastings } from "../utils/api";
 
 export default class TastingContainer extends React.Component {
@@ -19,7 +20,6 @@ export default class TastingContainer extends React.Component {
     getTastings()
       .then(response => {
         this.setState({ tastings: response.tastingsResponse, loading: false });
-        console.log(this.state)
       })
       .catch(e => {
         this.setState({ error: e.payload });
@@ -32,6 +32,7 @@ export default class TastingContainer extends React.Component {
       <div>
         {this.state.loading ? <Loading /> : <div/>}
         <TastingsList tastings={this.state.tastings} />
+        <AddTastingForm />
       </div>
     );   
   }

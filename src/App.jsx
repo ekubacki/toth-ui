@@ -2,6 +2,7 @@ import * as React from "react";
 import SignInContainer from "./components/SignInContainer";
 import TastingContainer from "./components/TastingContainer";
 import AppBar from './components/AppBar';
+import AddTastingForm from "./components/AddTastingForm";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -44,6 +45,7 @@ export default class App extends React.Component {
       <div>
         <AppBar user={this.state.user} logout={this.handleLogout}/>
         <TastingContainer user={this.state.user} />
+        <AddTastingForm />
       </div>
     );
   }

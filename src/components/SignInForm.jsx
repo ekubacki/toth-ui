@@ -8,7 +8,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
-import { ReactComponent as AppIcon } from './appIcon.svg';
+import AppIcon from './AppIcon';
 
 const styles = theme => ({
   main: {
@@ -93,7 +93,7 @@ class SignInForm extends React.Component {
         <CssBaseline />
         <Paper className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <AppIcon></AppIcon>
+            <AppIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Who Are You?

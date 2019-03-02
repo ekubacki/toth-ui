@@ -8,11 +8,16 @@ import PersonIcon from '@material-ui/icons/Person'
 import ListItemText from '@material-ui/core/ListItemText';
 import { ExpandMore } from '@material-ui/icons'
 
+const SUBMISSION_STYLE = {
+    maxWidth: '70%',
+    margin: 'auto'
+}
+
 export class TastingSubmission extends React.Component {
     render() {
         const { tasting } = this.props
         return (
-            <ExpansionPanel>
+            <ExpansionPanel style={SUBMISSION_STYLE}>
                 <ExpansionPanelSummary expandIcon={<ExpandMore />}>
                     <h3>{tasting.beerName}</h3>
                 </ExpansionPanelSummary>

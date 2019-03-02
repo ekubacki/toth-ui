@@ -5,8 +5,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import AppIcon from "./AppIcon";
 import { withStyles } from "@material-ui/core/styles";
-import { ReactComponent as AppIcon } from "./appIcon.svg";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 

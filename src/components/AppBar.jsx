@@ -4,11 +4,11 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import AppIcon from "./AppIcon";
 import { withStyles } from "@material-ui/core/styles";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
+import LineupIcon from "./LineupIcon";
+import TastingsIcon from "./TastingsIcon";
+import LogoutIcon from "./LogoutIcon";
 
 const styles = theme => ({
   root: {
@@ -36,36 +36,29 @@ const styles = theme => ({
 class TothAppBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      anchorEl: null
-    }
-    this.logOut = this.logOut.bind(this);
+    this.logout = this.logout.bind(this);
   }
-  
-
-  handleMenu = event => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
 
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
-  //This is a quick and dirty reset button :)
-  //TODO: How do we get back to the signup page from here?
-  logOut() {
+
+  logout = () => {
     this.props.logout();
+  }
+
+  handleViewChange = (view) => {
+     this.props.onViewChange(view)
   }
 
   render() {
     const { classes, user } = this.props;
-    const { anchorEl } = this.state;
-    const open = Boolean(anchorEl);
 
     return (
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar className={classes.appToolbar}>
-            <AppIcon />
+            <AppIcon width={44.446} height={44.446}/>
             <Typography
               className={classes.title}
               variant="title"
@@ -73,32 +66,17 @@ class TothAppBar extends React.Component {
             >
               Tasting of the Hops
             </Typography>
+            <IconButton onClick={() => {this.handleViewChange("TASTINGS")}}>
+              <TastingsIcon />
+            </IconButton>
+            <IconButton onClick={() => {this.handleViewChange("LINEUP")}}>
+              <LineupIcon />
+            </IconButton>
             {user && (
               <div>
-                <IconButton
-                  aria-owns={open ? "menu-appbar" : undefined}
-                  aria-haspopup="true"
-                  onClick={this.handleMenu}
-                  color="inherit"
-                >
-                  <AccountCircle />
+                <IconButton onClick={this.logout}>
+                  <LogoutIcon />
                 </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right"
-                  }}
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right"
-                  }}
-                  open={open}
-                  onClose={this.handleClose}
-                >
-                  <MenuItem onClick={this.logOut.bind(this)}>Logout</MenuItem>
-                </Menu>
               </div>
             )}
           </Toolbar>

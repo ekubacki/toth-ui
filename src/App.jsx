@@ -23,13 +23,14 @@ export default class App extends React.Component {
   componentDidMount() {
     const user = localStorage.getItem("user")
     if(user) {
-      this.setState({user, currentView: 'LINEUP'})
+      this.setState({user: JSON.parse(localStorage.getItem("user")), currentView: 'LINEUP'})
     }
   }
 
   handleSignIn(user) {
-    localStorage.setItem("user", user);
-    this.setState({ user, currentView: 'TASTINGS' });
+    const newUser = Object.assign({}, user);
+    localStorage.setItem("user", JSON.stringify(newUser));
+    this.setState({ user: newUser, currentView: 'TASTINGS' });
   }
 
   handleLogout() {

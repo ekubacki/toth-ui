@@ -16,7 +16,6 @@ class AddTastingForm extends React.Component {
   };
 
   handleClickOpen = () => {
-      console.log('open modal')
     this.setState({ open: true });
   };
 

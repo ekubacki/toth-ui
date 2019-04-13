@@ -1,6 +1,6 @@
 import * as React from "react";
 import TastingsList from "./TastingsList";
-import Loading from './Loading';
+import Loading from './icons/Loading';
 import AddTastingForm from './AddTastingForm'
 import { getTastings } from "../utils/api";
 

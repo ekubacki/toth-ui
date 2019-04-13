@@ -4,11 +4,11 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import AppIcon from "./AppIcon";
 import { withStyles } from "@material-ui/core/styles";
-import LineupIcon from "./LineupIcon";
-import TastingsIcon from "./TastingsIcon";
-import LogoutIcon from "./LogoutIcon";
+import LineupIcon from "./icons/LineupIcon";
+import TastingsIcon from "./icons/TastingsIcon";
+import LogoutIcon from "./icons/LogoutIcon";
+import AppIcon from "./icons/AppIcon";
 
 const styles = theme => ({
   root: {

@@ -16,7 +16,8 @@ export default class SignInContainer extends React.Component {
     };
     signup(firstName, lastName, email)
       .then(response => {
-        this.props.onSignIn(user);
+        const userWithID = Object.assign({id: response.accountId}, user)
+        this.props.onSignIn(userWithID);
       })
       .catch(error => {
         this.setState({error: error.payload})

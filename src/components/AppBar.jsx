@@ -30,6 +30,12 @@ const styles = theme => ({
   appToolbar: {
     "background-color": "#18453B",
     color: "white"
+  },
+  currentView: {
+    paddingBottom: "2px", 
+    borderStyle: "solid solid solid solid",
+    borderWidth: "2px 2px 2px 2px",
+    borderColor: "white"
   }
 });
 
@@ -51,6 +57,11 @@ class TothAppBar extends React.Component {
      this.props.onViewChange(view)
   }
 
+  getViewIconClass = (view) => {
+    const { currentView, classes } = this.props;
+    return currentView === view ? classes.currentView : null;
+  }
+
   render() {
     const { classes, user } = this.props;
 
@@ -66,11 +77,11 @@ class TothAppBar extends React.Component {
             >
               Tasting of the Hops
             </Typography>
-            <IconButton onClick={() => {this.handleViewChange("TASTINGS")}}>
-              <TastingsIcon />
+            <IconButton onClick={() => {this.handleViewChange('TASTINGS')}}>
+              <TastingsIcon className={this.getViewIconClass('TASTINGS')}/>
             </IconButton>
-            <IconButton onClick={() => {this.handleViewChange("LINEUP")}}>
-              <LineupIcon />
+            <IconButton onClick={() => {this.handleViewChange('LINEUP')}}>
+              <LineupIcon className={this.getViewIconClass('LINEUP')}/>
             </IconButton>
             {user && (
               <div>

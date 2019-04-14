@@ -24,13 +24,7 @@ class AddTastingForm extends React.Component {
   };
 
   handleSignUpClicked = () => {
-    const newBeer = {
-      name: this.state.name, 
-      submitter: this.state.submitter,
-      brewery: this.state.brewery
-    }
-
-    this.props.onSubmit(newBeer)
+    this.props.onSubmit(this.state.name, this.state.brewery)
     this.setState({ open: false })
   };
 
@@ -38,7 +32,7 @@ class AddTastingForm extends React.Component {
     this.setState({
       [name]: event.target.value
     })
-  }
+  };
 
   render() {
     const { fullScreen } = this.props;
@@ -58,16 +52,6 @@ class AddTastingForm extends React.Component {
               <DialogContentText>
                 Please enter your information below:
             </DialogContentText>
-              <TextField
-                required
-                autoFocus
-                margin="dense"
-                id="name"
-                label="Your name"
-                type="text"
-                onChange={this.handleChange('submitter')}
-                fullWidth
-              />
               <TextField
                 required
                 autoFocus

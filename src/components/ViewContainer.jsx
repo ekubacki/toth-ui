@@ -2,7 +2,7 @@ import * as React from "react";
 import TastingsList from "./TastingsList";
 import Loading from './icons/Loading';
 import AddTastingForm from "./AddTastingForm";
-import { getAllBeers } from "../utils/api";
+import { getAllBeers, addBeer } from "../utils/api";
 
 export default class ViewContainer extends React.Component {
   constructor(props) {
@@ -12,6 +12,7 @@ export default class ViewContainer extends React.Component {
       tastings: [],
       lineup: []
     }
+    this.addBeer = this.addBeer.bind(this);
   }
 
   componentDidMount() {
@@ -28,6 +29,26 @@ export default class ViewContainer extends React.Component {
       });
   }
 
+  addBeer(name, brewery) {
+    addBeer(name, brewery, this.props.user)
+      .then(() => {
+        getAllBeers()
+          .then(response => {
+            this.setState({
+              lineup: response.lineup,
+              tastings: response.tastings,
+              loading: false
+            });
+          })
+          .catch(e => {
+            this.setState({ error: e.payload });
+          });
+      })
+      .catch(() => {
+        // toast error
+      })
+  }
+
   render() {
     if (this.state.loading) {
       return <Loading />
@@ -36,12 +57,12 @@ export default class ViewContainer extends React.Component {
       case 'TASTINGS':
         return (
           <>
-            <TastingsList tastings={this.state.tastings} title={'2019 Tastings'} />
-            <AddTastingForm />
+            <TastingsList tastings={this.state.tastings} user={this.props.user} title={'2019 Tastings'} subTitle={'This is the sign up sheet'} />
+            <AddTastingForm onSubmit={this.addBeer} />
           </>
         );
       case 'LINEUP':
-        return <TastingsList tastings={this.state.lineup} title={'Lineup'} />;
+        return <TastingsList tastings={this.state.lineup} user={this.props.user} title={'Lineup'} subTitle={"What's on deck"} />;
       default:
         return null;
     }

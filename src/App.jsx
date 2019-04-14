@@ -49,7 +49,7 @@ export default class App extends React.Component {
     return (
       <div>
         <AppBar user={this.state.user} currentView={this.state.currentView} logout={this.handleLogout} onViewChange={this.onViewChange.bind(this)}/>
-        <ViewContainer currentView={this.state.currentView}/>
+        <ViewContainer user={this.state.user} currentView={this.state.currentView}/>
       </div>
     );
   }

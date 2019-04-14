@@ -7,6 +7,7 @@ import BusinessIcon from '@material-ui/icons/Business'
 import PersonIcon from '@material-ui/icons/Person'
 import ListItemText from '@material-ui/core/ListItemText';
 import { ExpandMore } from '@material-ui/icons'
+import RatingContainer from './RatingContainer';
 
 const SUBMISSION_STYLE = {
     maxWidth: '70%',
@@ -15,7 +16,7 @@ const SUBMISSION_STYLE = {
 
 export class TastingSubmission extends React.Component {
     render() {
-        const { tasting } = this.props
+        const { tasting, user } = this.props
         return (
             <ExpansionPanel style={SUBMISSION_STYLE}>
                 <ExpansionPanelSummary expandIcon={<ExpandMore />}>
@@ -34,7 +35,10 @@ export class TastingSubmission extends React.Component {
                             <ListItemText secondary="Submitter " primary={tasting.displayNames[0]} />
                         </ListItem>
                         <ListItem>
-                            <ListItemText secondary="Rating " primary={tasting.rating} />
+                          <ListItemText primary={"Rating "} />
+                        </ListItem>
+                        <ListItem>
+                          <RatingContainer user={user} tasting={tasting}/>
                         </ListItem>
                     </List>
                 </ExpansionPanelDetails>
@@ -44,5 +48,6 @@ export class TastingSubmission extends React.Component {
 }
 
 TastingSubmission.propTypes = {
+    user: PropTypes.object.isRequired,
     tasting: PropTypes.object.isRequired,
 };

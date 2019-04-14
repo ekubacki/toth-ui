@@ -40,6 +40,13 @@ const styles = theme => ({
   },
   submit: {
     marginTop: theme.spacing.unit * 3
+  },
+  error: {
+    background: '#d34c4c',
+    color: '#FFF',
+    borderRadius: '10px',
+    width: '75%',
+    textAlign: 'center'
   }
 });
 
@@ -77,6 +84,7 @@ class SignInForm extends React.Component {
 
   handleSignUp() {
     //this is called from the form when the sign in button is called
+    this.setState({error: null});
     this.props.onSignup(
       this.state.firstName,
       this.state.lastName,
@@ -85,6 +93,7 @@ class SignInForm extends React.Component {
   }
 
   handleSignIn() {
+    this.setState({error: null});
     this.props.onSignIn(
       this.state.firstName,
       this.state.lastName,
@@ -93,7 +102,11 @@ class SignInForm extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, error } = this.props;
+    const errorDiv = error ? 
+      <div className={classes.error}>
+        {error}
+      </div> : null
 
     return (
       <main className={classes.main}>
@@ -103,6 +116,7 @@ class SignInForm extends React.Component {
           <Typography component="h1" variant="h5">
             Who Are You?
           </Typography>
+          {errorDiv}
           <form className={classes.form}>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="firstName">First Name</InputLabel>
@@ -141,7 +155,7 @@ class SignInForm extends React.Component {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={this.handleSignup}
+              onClick={this.handleSignUp}
             >
               Register
             </Button>

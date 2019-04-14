@@ -50,7 +50,10 @@ class TothAppBar extends React.Component {
   };
 
   logout = () => {
-    this.props.logout();
+    const logout = window.confirm('Are you sure you want to log out?');
+    if(logout) {
+      this.props.logout();
+    }
   }
 
   handleViewChange = (view) => {

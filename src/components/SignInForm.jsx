@@ -1,5 +1,4 @@
 import React from "react";
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import FormControl from "@material-ui/core/FormControl";
@@ -34,7 +33,6 @@ const styles = theme => ({
     height: '60px',
     width: '60px',
     margin: theme.spacing.unit,
-    backgroundColor: "#18453B"
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -58,7 +56,8 @@ class SignInForm extends React.Component {
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this); // binds function to html form input
     this.handleLastNameChange = this.handleLastNameChange.bind(this); // binds function to html form input
     this.handleEmailChange = this.handleEmailChange.bind(this); // binds function to html form input
-    this.handleSubmit = this.handleSubmit.bind(this); // binds function to html onclick handle submit button
+    this.handleSignUp = this.handleSignUp.bind(this); // binds function to html onclick handle submit button
+    this.handleSignIn = this.handleSignIn.bind(this);
   }
 
   handleFirstNameChange(event) {
@@ -76,13 +75,21 @@ class SignInForm extends React.Component {
     this.setState({ email: event.target.value }); // event.target.value is from javascripts navtive eventing
   }
 
-  handleSubmit() {
+  handleSignUp() {
     //this is called from the form when the sign in button is called
-    this.props.onSubmit(
+    this.props.onSignup(
       this.state.firstName,
       this.state.lastName,
       this.state.email
     ); //onsubmit is created from container (see notes)
+  }
+
+  handleSignIn() {
+    this.props.onSignIn(
+      this.state.firstName,
+      this.state.lastName,
+      this.state.email
+    )
   }
 
   render() {
@@ -92,9 +99,7 @@ class SignInForm extends React.Component {
       <main className={classes.main}>
         <CssBaseline />
         <Paper className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <AppIcon />
-          </Avatar>
+          <AppIcon fill={"#18453B"} height={70} width={70}/>
           <Typography component="h1" variant="h5">
             Who Are You?
           </Typography>
@@ -130,14 +135,23 @@ class SignInForm extends React.Component {
                 autoComplete="email"
               />
             </FormControl>
+            <span>First time here? Click Register</span>
             <Button
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={this.handleSubmit}
+              onClick={this.handleSignup}
             >
-              Sign in / Sign up
+              Register
+            </Button>
+            <span></span>
+            <Button
+              variant="contained"
+              className={classes.submit}
+              onClick={this.handleSignIn}
+            >
+              Sign in
             </Button>
           </form>
         </Paper>

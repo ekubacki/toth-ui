@@ -193,9 +193,7 @@ export const addBeer = (name, brewery, user) => {
       if (response.ok) {
         resolve(response.json());
       } else {
-        response.json().then(errorPayload => {
-          reject(errorPayload);
-        });
+        reject(response)
       }
     })
     .catch(function(error) {

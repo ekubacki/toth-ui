@@ -4,11 +4,19 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import withMobileDialog from '@material-ui/core/withMobileDialog';
 import TextField from '@material-ui/core/TextField';
 import AddTastingButton from '../components/AddTastingButton'
+
+const ERROR_STYLE = {
+  background: '#d34c4c',
+  color: '#FFF',
+  borderRadius: '10px',
+  width: '80%',
+  textAlign: 'center',
+  margin: 'auto'
+}
 
 class AddTastingForm extends React.Component {
   state = {
@@ -20,12 +28,18 @@ class AddTastingForm extends React.Component {
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({ open: false, error: false });
   };
 
   handleSignUpClicked = () => {
-    this.props.onSubmit(this.state.name, this.state.brewery)
-    this.setState({ open: false })
+    const { name, brewery } = this.state
+    
+    if( name && brewery ) {
+      this.props.onSubmit(this.state.name, this.state.brewery)
+      this.setState({ open: false, error: false })
+    } else {
+      this.setState({ error: 'Please enter the beer name and brewery' })
+    }
   };
 
   handleChange = name => event => {
@@ -36,6 +50,10 @@ class AddTastingForm extends React.Component {
 
   render() {
     const { fullScreen } = this.props;
+    const errorDiv = this.state.error ? 
+    <div style={ERROR_STYLE}>
+      {this.state.error}
+    </div> : null
 
     return (
       <div>
@@ -48,10 +66,8 @@ class AddTastingForm extends React.Component {
         >
           <form>
             <DialogTitle id="responsive-dialog-title">{"Sign your beer up"}</DialogTitle>
+            {errorDiv}
             <DialogContent>
-              <DialogContentText>
-                Please enter your information below:
-            </DialogContentText>
               <TextField
                 required
                 autoFocus
@@ -64,6 +80,7 @@ class AddTastingForm extends React.Component {
               />
               <TextField
                 autoFocus
+                required
                 margin="dense"
                 id="brewery"
                 label="Brewery"

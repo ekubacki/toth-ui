@@ -45,7 +45,7 @@ const styles = theme => ({
     background: '#d34c4c',
     color: '#FFF',
     borderRadius: '10px',
-    width: '75%',
+    width: '80%',
     textAlign: 'center'
   }
 });

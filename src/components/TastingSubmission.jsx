@@ -8,6 +8,7 @@ import PersonIcon from '@material-ui/icons/Person'
 import ListItemText from '@material-ui/core/ListItemText';
 import { ExpandMore } from '@material-ui/icons'
 import RatingContainer from './RatingContainer';
+import Button from "@material-ui/core/Button";
 
 const SUBMISSION_STYLE = {
   maxWidth: '70%',
@@ -15,8 +16,17 @@ const SUBMISSION_STYLE = {
 }
 
 export class TastingSubmission extends React.Component {
+  getBeerTastedButton() {
+    if(this.props.user.isAdmin) {
+      return <Button color="primary" variant="contained">Beer Tasted</Button>
+    } else {
+      return <></>
+    }
+  }
+
   render() {
     const { tasting, user } = this.props
+    const beerTastedButton = this.getBeerTastedButton()
     return (
       <ExpansionPanel style={SUBMISSION_STYLE}>
         <ExpansionPanelSummary expandIcon={<ExpandMore />}>
@@ -40,6 +50,7 @@ export class TastingSubmission extends React.Component {
             <ListItem>
               <RatingContainer user={user} tasting={tasting} />
             </ListItem>
+            {beerTastedButton}
           </List>
         </ExpansionPanelDetails>
       </ExpansionPanel>

@@ -6,6 +6,7 @@ import AppBar from './components/AppBar';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+    this.adminNames = ['eric kubacki', 'jason smylnycky', 'trevor murphy']
     this.state = {
       // need to create state object and it's subvalues so they can be passed around
       user: {
@@ -29,6 +30,10 @@ export default class App extends React.Component {
 
   handleSignIn(user) {
     const newUser = Object.assign({}, user);
+    const userRealName = `${user.firstName.toLowerCase()} ${user.lastName.toLowerCase()}`;
+    if (this.adminNames.indexOf(userRealName) > -1)  { 
+      newUser.isAdmin = true
+    }
     localStorage.setItem("user", JSON.stringify(newUser));
     this.setState({ user: newUser, currentView: 'TASTINGS' });
   }

@@ -1,6 +1,7 @@
+const BASE_URL = "http://10.0.0.63:8080/TastingOfTheHops";
 export const signup = (firstName, lastName, email) => {
   return new Promise((resolve, reject) => {
-    fetch("http://127.0.0.1:8080/TastingOfTheHops/account/signup", {
+    fetch(BASE_URL + '/account/signup', {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -29,7 +30,7 @@ export const signup = (firstName, lastName, email) => {
 
 export const signIn = (firstName, lastName, email) => {
   return new Promise((resolve, reject) => {
-    fetch("http://127.0.0.1:8080/TastingOfTheHops/account/find", {
+    fetch(BASE_URL + "/account/find", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -58,7 +59,7 @@ export const signIn = (firstName, lastName, email) => {
 
 export const rateBeer = (firstName, lastName, beerName, brewery, rating) => {
   return new Promise((resolve, reject) => {
-    fetch("http://127.0.0.1:8080/TastingOfTheHops/tasting/rate", {
+    fetch(BASE_URL + "/tasting/rate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -89,7 +90,7 @@ export const rateBeer = (firstName, lastName, beerName, brewery, rating) => {
 
 export const findUserBeerRating = (userId, beerId) => {
   return new Promise((resolve, reject) => {
-    fetch("http://127.0.0.1:8080/TastingOfTheHops/tasting/rating/find", {
+    fetch(BASE_URL + "/tasting/rating/find", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -115,7 +116,7 @@ export const findUserBeerRating = (userId, beerId) => {
 
 export const getTastings = () => {
   return new Promise((resolve, reject) => {
-    fetch("http://127.0.0.1:8080/TastingOfTheHops/tasting/tastings", {
+    fetch(BASE_URL + "/tasting/tastings", {
       method: "GET",
       mode: "cors"
     })
@@ -136,7 +137,7 @@ export const getTastings = () => {
 
 export const getLineup = () => {
   return new Promise((resolve, reject) => {
-    fetch("http://127.0.0.1:8080/TastingOfTheHops/tasting/lineup", {
+    fetch(BASE_URL + "/tasting/lineup", {
       method: "GET",
       mode: "cors"
     })
@@ -172,7 +173,7 @@ export const getAllBeers = () => {
 
 export const addBeer = (name, brewery, user) => {
   return new Promise((resolve, reject) => {
-    fetch("http://127.0.0.1:8080/TastingOfTheHops/account/beer", {
+    fetch(BASE_URL + "/account/beer", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

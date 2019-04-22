@@ -1,4 +1,4 @@
-const BASE_URL = "http://10.0.0.63:8080/TastingOfTheHops";
+const BASE_URL = "http://10.0.75.1:8080/TastingOfTheHops";
 export const signup = (firstName, lastName, email) => {
   return new Promise((resolve, reject) => {
     fetch(BASE_URL + '/account/signup', {
@@ -189,6 +189,29 @@ export const addBeer = (name, brewery, user) => {
           }
         ]
       })
+    })
+    .then(function(response) {
+      if (response.ok) {
+        resolve(response.json());
+      } else {
+        reject(response)
+      }
+    })
+    .catch(function(error) {
+      reject(error);
+    });
+  });
+}
+
+export const tasteBeer = (name, brewery) => {
+  return new Promise((resolve, reject) => {
+    fetch(BASE_URL + "/tasting/tasted", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      mode: "cors",
+      body: JSON.stringify({ name, brewery }) 
     })
     .then(function(response) {
       if (response.ok) {

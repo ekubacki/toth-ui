@@ -13,7 +13,7 @@ const ADD_BUTTON_STYLE = {
 export default function AddTastingButton(props) {
     return (
         <Fab style={ADD_BUTTON_STYLE} onClick={props.onClick} >
-            <AddIcon />
+          <AddIcon />
         </Fab>
     )
 }

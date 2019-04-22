@@ -31,40 +31,40 @@ export default class ViewContainer extends React.Component {
 
   addBeer(name, brewery) {
     addBeer(name, brewery, this.props.user)
-      .then(() => {
-        getAllBeers()
-          .then(response => {
-            this.setState({
-              lineup: response.lineup,
-              tastings: response.tastings,
-              loading: false
-            });
-          })
-          .catch(e => {
-            this.setState({ error: e.payload });
-          });
+      .then(getAllBeers)
+      .catch(e => {
+        console.error('e')
       })
-      .catch(() => {
-        // toast error
+      .then(response => {
+        this.setState({
+          lineup: response.lineup,
+          tastings: response.tastings,
+          loading: false
+        });
       })
+      .catch(e => {
+        this.setState({ error: e.payload });
+      })
+      
+  // toast erro
   }
 
-  render() {
-    if (this.state.loading) {
-      return <Loading />
-    }
-    switch (this.props.currentView) {
-      case 'TASTINGS':
-        return (
-          <>
-            <TastingsList tastings={this.state.tastings} user={this.props.user} title={'2019 Tastings'} subTitle={'This is the sign up sheet'} />
-            <AddTastingForm onSubmit={this.addBeer} />
-          </>
-        );
-      case 'LINEUP':
-        return <TastingsList tastings={this.state.lineup} user={this.props.user} title={'Lineup'} subTitle={"What's on deck"} />;
-      default:
-        return null;
-    }
+render() {
+  if (this.state.loading) {
+    return <Loading />
   }
+  switch (this.props.currentView) {
+    case 'TASTINGS':
+      return (
+        <>
+          <TastingsList tastings={this.state.tastings} user={this.props.user} title={'2019 Tastings'} subTitle={'This is the sign up sheet'} />
+          <AddTastingForm onSubmit={this.addBeer} />
+        </>
+      );
+    case 'LINEUP':
+      return <TastingsList tastings={this.state.lineup} user={this.props.user} title={'Lineup'} subTitle={"What's on deck"} />;
+    default:
+      return null;
+  }
+}
 }

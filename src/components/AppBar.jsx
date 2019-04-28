@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import { withStyles } from "@material-ui/core/styles";
-import LineupIcon from "./icons/LineupIcon";
-import TastingsIcon from "./icons/TastingsIcon";
-import LogoutIcon from "./icons/LogoutIcon";
-import AppIcon from "./icons/AppIcon";
+import React from "react"
+import PropTypes from "prop-types"
+import AppBar from "@material-ui/core/AppBar"
+import Toolbar from "@material-ui/core/Toolbar"
+import Typography from "@material-ui/core/Typography"
+import IconButton from "@material-ui/core/IconButton"
+import { withStyles } from "@material-ui/core/styles"
+import LineupIcon from "./icons/LineupIcon"
+import TastingsIcon from "./icons/TastingsIcon"
+import LogoutIcon from "./icons/LogoutIcon"
+import AppIcon from "./icons/AppIcon"
 
 const styles = theme => ({
   root: {
@@ -37,22 +37,22 @@ const styles = theme => ({
     borderWidth: "2px 2px 2px 2px",
     borderColor: "white"
   }
-});
+})
 
 class TothAppBar extends React.Component {
   constructor(props) {
-    super(props);
-    this.logout = this.logout.bind(this);
+    super(props)
+    this.logout = this.logout.bind(this)
   }
 
   handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
+    this.setState({ anchorEl: null })
+  }
 
   logout = () => {
-    const logout = window.confirm('Are you sure you want to log out?');
+    const logout = window.confirm('Are you sure you want to log out?')
     if(logout) {
-      this.props.logout();
+      this.props.logout()
     }
   }
 
@@ -61,12 +61,12 @@ class TothAppBar extends React.Component {
   }
 
   getViewIconClass = (view) => {
-    const { currentView, classes } = this.props;
-    return currentView === view ? classes.currentView : null;
+    const { currentView, classes } = this.props
+    return currentView === view ? classes.currentView : null
   }
 
   render() {
-    const { classes, user } = this.props;
+    const { classes, user } = this.props
 
     return (
       <div className={classes.root}>
@@ -96,12 +96,12 @@ class TothAppBar extends React.Component {
           </Toolbar>
         </AppBar>
       </div>
-    );
+    )
   }
 }
 
 TothAppBar.propTypes = {
   classes: PropTypes.object.isRequired
-};
+}
 
-export default withStyles(styles)(TothAppBar);
+export default withStyles(styles)(TothAppBar)

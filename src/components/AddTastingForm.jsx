@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import withMobileDialog from '@material-ui/core/withMobileDialog';
-import TextField from '@material-ui/core/TextField';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Button from '@material-ui/core/Button'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogTitle from '@material-ui/core/DialogTitle'
+import withMobileDialog from '@material-ui/core/withMobileDialog'
+import TextField from '@material-ui/core/TextField'
 import AddTastingButton from '../components/AddTastingButton'
 
 const ERROR_STYLE = {
@@ -21,15 +21,15 @@ const ERROR_STYLE = {
 class AddTastingForm extends React.Component {
   state = {
     open: false,
-  };
+  }
 
   handleClickOpen = () => {
-    this.setState({ open: true });
-  };
+    this.setState({ open: true })
+  }
 
   handleClose = () => {
-    this.setState({ open: false, error: false });
-  };
+    this.setState({ open: false, error: false })
+  }
 
   handleSignUpClicked = () => {
     const { name, brewery } = this.state
@@ -40,16 +40,16 @@ class AddTastingForm extends React.Component {
     } else {
       this.setState({ error: 'Please enter the beer name and brewery' })
     }
-  };
+  }
 
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value
     })
-  };
+  }
 
   render() {
-    const { fullScreen } = this.props;
+    const { fullScreen } = this.props
     const errorDiv = this.state.error ? 
     <div style={ERROR_STYLE}>
       {this.state.error}
@@ -100,12 +100,12 @@ class AddTastingForm extends React.Component {
           </form>
         </Dialog>
       </div>
-    );
+    )
   }
 }
 
 AddTastingForm.propTypes = {
   fullScreen: PropTypes.bool.isRequired,
-};
+}
 
-export default withMobileDialog()(AddTastingForm);
+export default withMobileDialog()(AddTastingForm)

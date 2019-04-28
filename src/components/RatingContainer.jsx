@@ -1,10 +1,10 @@
-import * as React from "react";
-import DoneIcon from '@material-ui/icons/Done';
-import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
+import * as React from "react"
+import DoneIcon from '@material-ui/icons/Done'
+import Snackbar from '@material-ui/core/Snackbar'
+import IconButton from '@material-ui/core/IconButton'
 
-import { withStyles } from '@material-ui/core/styles';
-import Rating from 'material-ui-rating';
+import { withStyles } from '@material-ui/core/styles'
+import Rating from 'material-ui-rating'
 import { rateBeer, findUserBeerRating } from '../utils/api'
 
 const styles = theme => ({
@@ -14,13 +14,13 @@ const styles = theme => ({
   done: {
     color: "#2EF720"
   }
-});
+})
 
 class RatingContainer extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      rating: props.tasting.rating,
+      rating: undefined,
       rated: false,
       snackbarOpen: false
     }
@@ -38,25 +38,25 @@ class RatingContainer extends React.Component {
 
   handleSnackbarClose = (event, reason) => {
     if (reason === 'clickaway') {
-      return;
+      return
     }
 
-    this.setState({ snackbarOpen: false });
-  };
+    this.setState({ snackbarOpen: false })
+  }
 
   handleRatingSelected(rating) {
-    const { user, tasting } = this.props;
+    const { user, tasting } = this.props
     rateBeer(user.firstName, user.lastName, tasting.beerName, tasting.brewery, rating)
       .then(() => {
         this.setState({ rating, rated: true, snackbarOpen: true })  
       })
       .catch(error => {
         // toast failure
-      });
+      })
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.props
     return (
       <>
         <Rating
@@ -90,7 +90,7 @@ class RatingContainer extends React.Component {
             ]}
           />
         </>
-    );
+    )
   }
 }
 

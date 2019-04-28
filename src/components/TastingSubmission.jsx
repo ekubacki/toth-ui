@@ -16,11 +16,20 @@ const SUBMISSION_STYLE = {
 }
 
 export class TastingSubmission extends React.Component {
+  handleExpanded(event, expanded) {
+    event.preventDefault()
+
+    const { tasting } = this.props
+    const expandedTasting = expanded ? tasting.id : undefined
+    this.props.onSubmissionExpanded(expandedTasting)
+  }
+
   render() {
-    const { tasting, user } = this.props
+    const { tasting, user, expanded } = this.props
+    const ratingRounded = tasting.rating ? `${tasting.rating.toFixed(1)} Avg` : '-'
     
     return (
-      <ExpansionPanel style={SUBMISSION_STYLE}>
+      <ExpansionPanel expanded={expanded === tasting.id} onChange={this.handleExpanded.bind(this)} style={SUBMISSION_STYLE}>
         <ExpansionPanelSummary expandIcon={<ExpandMore />}>
           <h3>{tasting.beerName}</h3>
         </ExpansionPanelSummary>
@@ -37,7 +46,7 @@ export class TastingSubmission extends React.Component {
               <ListItemText secondary="Submitter " primary={tasting.displayNames.toString()} />
             </ListItem>
             <ListItem>
-              <ListItemText primary={"Rating "} />
+              <ListItemText primary={"Rating"} secondary={ratingRounded} />
             </ListItem>
             <ListItem>
               <RatingContainer user={user} tasting={tasting} />

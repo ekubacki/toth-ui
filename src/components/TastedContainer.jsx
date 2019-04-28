@@ -1,10 +1,10 @@
-import * as React from "react";
-import DoneIcon from '@material-ui/icons/Done';
-import Snackbar from '@material-ui/core/Snackbar';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import { withStyles } from '@material-ui/core/styles';
-import { tasteBeer } from '../utils/api'
+import * as React from "react"
+import DoneIcon from '@material-ui/icons/Done'
+import Snackbar from '@material-ui/core/Snackbar'
+import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
+import { withStyles } from '@material-ui/core/styles'
+import { tasteBeer, getAllBeers } from '../utils/api'
 
 const styles = theme => ({
   close: {
@@ -13,11 +13,11 @@ const styles = theme => ({
   done: {
     color: "#2EF720"
   }
-});
+})
 
 class TastedContainer extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       snackbarOpen: false
     }
@@ -25,25 +25,33 @@ class TastedContainer extends React.Component {
 
   handleSnackbarClose = (event, reason) => {
     if (reason === 'clickaway') {
-      return;
+      return
     }
 
-    this.setState({ snackbarOpen: false });
+    this.setState({ snackbarOpen: false })
   }
 
   onTasteBeer() {
-    const { tasting } = this.props;
+    const { tasting } = this.props
     tasteBeer(tasting.beerName, tasting.brewery)
-      .then(() => {
-        this.setState({ snackbarOpen: true })
+      then(getAllBeers)
+      .catch(e => {
+        this.setState({ error: e.payload })
       })
-      .catch(error => {
-        // toast failure
-      });
+      .then(response => {
+        this.setState({
+          lineup: response.lineup,
+          tastings: response.tastings,
+          loading: false
+        })
+      })
+      .catch(e => {
+        this.setState({ error: e.payload })
+      })
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.props
     const beerTastedButton = this.props.user.isAdmin ?
       <Button
         color="primary"
@@ -82,7 +90,7 @@ class TastedContainer extends React.Component {
           ]}
         />
       </>
-    );
+    )
   }
 }
 

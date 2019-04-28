@@ -1,11 +1,11 @@
-import * as React from "react";
-import SignInContainer from "./components/SignInContainer";
-import ViewContainer from "./components/ViewContainer";
-import AppBar from './components/AppBar';
+import * as React from "react"
+import SignInContainer from "./components/SignInContainer"
+import ViewContainer from "./components/ViewContainer"
+import AppBar from './components/AppBar'
 
 export default class App extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.adminNames = ['eric kubacki', 'jason smylnycky', 'trevor murphy']
     this.state = {
       // need to create state object and it's subvalues so they can be passed around
@@ -15,7 +15,7 @@ export default class App extends React.Component {
         email: ""
       },
       currentView: 'TASTINGS'
-    };
+    }
 
     this.handleSignIn = this.handleSignIn.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
@@ -29,18 +29,18 @@ export default class App extends React.Component {
   }
 
   handleSignIn(user) {
-    const newUser = Object.assign({}, user);
-    const userRealName = `${user.firstName.toLowerCase()} ${user.lastName.toLowerCase()}`;
+    const newUser = Object.assign({}, user)
+    const userRealName = `${user.firstName.toLowerCase()} ${user.lastName.toLowerCase()}`
     if (this.adminNames.indexOf(userRealName) > -1)  { 
       newUser.isAdmin = true
     }
-    localStorage.setItem("user", JSON.stringify(newUser));
-    this.setState({ user: newUser, currentView: 'TASTINGS' });
+    localStorage.setItem("user", JSON.stringify(newUser))
+    this.setState({ user: newUser, currentView: 'TASTINGS' })
   }
 
   handleLogout() {
-    localStorage.clear();
-    window.location.href = "/";
+    localStorage.clear()
+    window.location.href = "/"
   }
 
   onViewChange(view) {
@@ -49,13 +49,13 @@ export default class App extends React.Component {
 
   render() {
     if (!localStorage.getItem("user")) {
-      return <SignInContainer onSignIn={this.handleSignIn} />;
+      return <SignInContainer onSignIn={this.handleSignIn} />
     }
     return (
       <div>
         <AppBar user={this.state.user} currentView={this.state.currentView} logout={this.handleLogout} onViewChange={this.onViewChange.bind(this)}/>
         <ViewContainer user={this.state.user} currentView={this.state.currentView}/>
       </div>
-    );
+    )
   }
 }

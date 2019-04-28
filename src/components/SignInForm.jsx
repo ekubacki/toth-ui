@@ -1,13 +1,13 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import FormControl from "@material-ui/core/FormControl";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import withStyles from "@material-ui/core/styles/withStyles";
-import AppIcon from './icons/AppIcon';
+import React from "react"
+import Button from "@material-ui/core/Button"
+import CssBaseline from "@material-ui/core/CssBaseline"
+import FormControl from "@material-ui/core/FormControl"
+import Input from "@material-ui/core/Input"
+import InputLabel from "@material-ui/core/InputLabel"
+import Paper from "@material-ui/core/Paper"
+import Typography from "@material-ui/core/Typography"
+import withStyles from "@material-ui/core/styles/withStyles"
+import AppIcon from './icons/AppIcon'
 
 const styles = theme => ({
   main: {
@@ -48,52 +48,52 @@ const styles = theme => ({
     width: '80%',
     textAlign: 'center'
   }
-});
+})
 
 class SignInForm extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       // need to create state object and it's subvalues so they can be passed around
       firstName: "",
       lastName: "",
       email: ""
-    };
+    }
 
-    this.handleFirstNameChange = this.handleFirstNameChange.bind(this); // binds function to html form input
-    this.handleLastNameChange = this.handleLastNameChange.bind(this); // binds function to html form input
-    this.handleEmailChange = this.handleEmailChange.bind(this); // binds function to html form input
-    this.handleSignUp = this.handleSignUp.bind(this); // binds function to html onclick handle submit button
-    this.handleSignIn = this.handleSignIn.bind(this);
+    this.handleFirstNameChange = this.handleFirstNameChange.bind(this) // binds function to html form input
+    this.handleLastNameChange = this.handleLastNameChange.bind(this) // binds function to html form input
+    this.handleEmailChange = this.handleEmailChange.bind(this) // binds function to html form input
+    this.handleSignUp = this.handleSignUp.bind(this) // binds function to html onclick handle submit button
+    this.handleSignIn = this.handleSignIn.bind(this)
   }
 
   handleFirstNameChange(event) {
     //called by onChange in html form
-    this.setState({ firstName: event.target.value }); // event.target.value is from javascripts navtive eventing
+    this.setState({ firstName: event.target.value }) // event.target.value is from javascripts navtive eventing
   }
 
   handleLastNameChange(event) {
     //called by onChange in html form
-    this.setState({ lastName: event.target.value }); // event.target.value is from javascripts navtive eventing
+    this.setState({ lastName: event.target.value }) // event.target.value is from javascripts navtive eventing
   }
 
   handleEmailChange(event) {
     //called by onChange in html form
-    this.setState({ email: event.target.value }); // event.target.value is from javascripts navtive eventing
+    this.setState({ email: event.target.value }) // event.target.value is from javascripts navtive eventing
   }
 
   handleSignUp() {
     //this is called from the form when the sign in button is called
-    this.setState({error: null});
+    this.setState({error: null})
     this.props.onSignup(
       this.state.firstName,
       this.state.lastName,
       this.state.email
-    ); //onsubmit is created from container (see notes)
+    ) //onsubmit is created from container (see notes)
   }
 
   handleSignIn() {
-    this.setState({error: null});
+    this.setState({error: null})
     this.props.onSignIn(
       this.state.firstName,
       this.state.lastName,
@@ -102,7 +102,7 @@ class SignInForm extends React.Component {
   }
 
   render() {
-    const { classes, error } = this.props;
+    const { classes, error } = this.props
     const errorDiv = error ? 
       <div className={classes.error}>
         {error}
@@ -170,8 +170,8 @@ class SignInForm extends React.Component {
           </form>
         </Paper>
       </main>
-    );
+    )
   }
 }
 
-export default withStyles(styles)(SignInForm);
+export default withStyles(styles)(SignInForm)

@@ -1,4 +1,4 @@
-const BASE_URL = "http://10.0.75.1:8080/TastingOfTheHops";
+const BASE_URL = "http://10.0.75.1:8080/TastingOfTheHops"
 export const signup = (firstName, lastName, email) => {
   return new Promise((resolve, reject) => {
     fetch(BASE_URL + '/account/signup', {
@@ -15,18 +15,18 @@ export const signup = (firstName, lastName, email) => {
     })
       .then(function(response) {
         if (response.ok) {
-          resolve(response.json());
+          resolve(response.json())
         } else {
           response.json().then(errorPayload => {
-            reject(errorPayload);
-          });
+            reject(errorPayload)
+          })
         }
       })
       .catch(function(error) {
-        reject(error);
-      });
-  });
-};
+        reject(error)
+      })
+  })
+}
 
 export const signIn = (firstName, lastName, email) => {
   return new Promise((resolve, reject) => {
@@ -44,18 +44,18 @@ export const signIn = (firstName, lastName, email) => {
     })
       .then(function(response) {
         if (response.ok) {
-          resolve(response.json());
+          resolve(response.json())
         } else {
           response.json().then(errorPayload => {
-            reject(errorPayload);
-          });
+            reject(errorPayload)
+          })
         }
       })
       .catch(function(error) {
-        reject(error);
-      });
-  });
-};
+        reject(error)
+      })
+  })
+}
 
 export const rateBeer = (firstName, lastName, beerName, brewery, rating) => {
   return new Promise((resolve, reject) => {
@@ -75,18 +75,18 @@ export const rateBeer = (firstName, lastName, beerName, brewery, rating) => {
     })
       .then(function(response) {
         if (response.ok) {
-          resolve();
+          resolve()
         } else {
           response.json().then(errorPayload => {
-            reject(errorPayload);
-          });
+            reject(errorPayload)
+          })
         }
       })
       .catch(function(error) {
-        reject(error);
-      });
-  });
-};
+        reject(error)
+      })
+  })
+}
 
 export const findUserBeerRating = (userId, beerId) => {
   return new Promise((resolve, reject) => {
@@ -103,16 +103,14 @@ export const findUserBeerRating = (userId, beerId) => {
     })
       .then(function(response) {
         if (response.ok) {
-          resolve(response.json());
-        } else {
-          console.log('error getting beer rating')
+          resolve(response.json())
         }
       })
       .catch(function(error) {
-        reject(error);
-      });
-  });
-};
+        reject(error)
+      })
+  })
+}
 
 export const getTastings = () => {
   return new Promise((resolve, reject) => {
@@ -122,18 +120,18 @@ export const getTastings = () => {
     })
       .then(function(response) {
         if (response.ok) {
-          resolve(response.json());
+          resolve(response.json())
         } else {
           response.json().then(errorPayload => {
-            reject(errorPayload);
-          });
+            reject(errorPayload)
+          })
         }
       })
       .catch(function(error) {
-        reject(error);
-      });
-  });
-};
+        reject(error)
+      })
+  })
+}
 
 export const getLineup = () => {
   return new Promise((resolve, reject) => {
@@ -143,22 +141,22 @@ export const getLineup = () => {
     })
       .then(function(response) {
         if (response.ok) {
-          resolve(response.json());
+          resolve(response.json())
         } else {
           response.json().then(errorPayload => {
-            reject(errorPayload);
-          });
+            reject(errorPayload)
+          })
         }
       })
       .catch(function(error) {
-        reject(error);
-      });
-  });
-};
+        reject(error)
+      })
+  })
+}
 
 export const getAllBeers = () => {
   return new Promise((resolve, reject) => {
-    let beers = {};
+    let beers = {}
     getTastings().then(response => {
       beers.tastings = response.tastingsResponse
       return Promise.resolve()
@@ -169,7 +167,7 @@ export const getAllBeers = () => {
       })
     })
   })
-};
+}
 
 export const addBeer = (name, brewery, user) => {
   return new Promise((resolve, reject) => {
@@ -192,15 +190,15 @@ export const addBeer = (name, brewery, user) => {
     })
     .then(function(response) {
       if (response.ok) {
-        resolve(response.json());
+        resolve(response.json())
       } else {
         reject(response)
       }
     })
     .catch(function(error) {
-      reject(error);
-    });
-  });
+      reject(error)
+    })
+  })
 }
 
 export const tasteBeer = (name, brewery) => {
@@ -215,13 +213,13 @@ export const tasteBeer = (name, brewery) => {
     })
     .then(function(response) {
       if (response.ok) {
-        resolve(response.json());
+        resolve(response.json())
       } else {
         reject(response)
       }
     })
     .catch(function(error) {
-      reject(error);
-    });
-  });
+      reject(error)
+    })
+  })
 }

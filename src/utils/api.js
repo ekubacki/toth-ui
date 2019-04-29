@@ -154,6 +154,28 @@ export const getLineup = () => {
   })
 }
 
+export const deleteTasting = (beerId) => {
+  
+  return new Promise((resolve, reject) => {
+    fetch(BASE_URL + `/tasting/${beerId}`, {
+      method: "DELETE",
+      mode: "cors"
+    })
+      .then(function(response) {
+        if (response.ok) {
+          resolve(response.json())
+        } else {
+          response.json().then(errorPayload => {
+            reject(errorPayload)
+          })
+        }
+      })
+      .catch(function(error) {
+        reject(error)
+      })
+  })
+}
+
 export const getAllBeers = () => {
   return new Promise((resolve, reject) => {
     let beers = {}

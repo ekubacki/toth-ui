@@ -1,10 +1,10 @@
 import * as React from "react"
 import DoneIcon from '@material-ui/icons/Done'
 import Snackbar from '@material-ui/core/Snackbar'
-import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { withStyles } from '@material-ui/core/styles'
-import { tasteBeer } from '../utils/api'
+import { deleteTasting } from '../utils/api'
 
 const styles = theme => ({
   close: {
@@ -15,7 +15,7 @@ const styles = theme => ({
   }
 })
 
-class TastedContainer extends React.Component {
+class DeleteTastingContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -31,11 +31,11 @@ class TastedContainer extends React.Component {
     this.setState({ snackbarOpen: false })
   }
 
-  onTasteBeer() {
+  deleteTasting() {
     const { tasting } = this.props
-    tasteBeer(tasting.beerName, tasting.brewery)
+    deleteTasting(tasting.id)
       .then(() => {
-        this.setState({ snackbarOpen: true})
+        this.setState({ snackbarOpen: true })
       })
       .catch(e => {
         this.setState({ error: e.payload })
@@ -44,19 +44,20 @@ class TastedContainer extends React.Component {
 
   render() {
     const { classes } = this.props
-    const beerTastedButton = this.props.user.isAdmin ?
-      <Button
+    const deleteTastingButton = this.props.user.isAdmin ?
+    <IconButton aria-label="Delete" onClick={this.deleteTasting.bind(this)}>
+      <DeleteIcon
         color="primary"
         variant="contained"
-        onClick={this.onTasteBeer.bind(this)}
       >
         Beer Tasted
-      </Button>
+      </DeleteIcon>
+    </IconButton>
       : <></>
 
     return (
       <>
-        {beerTastedButton}
+        {deleteTastingButton}
         <Snackbar
           anchorOrigin={{
             vertical: 'bottom',
@@ -86,4 +87,4 @@ class TastedContainer extends React.Component {
   }
 }
 
-export default withStyles(styles)(TastedContainer)
+export default withStyles(styles)(DeleteTastingContainer)

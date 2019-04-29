@@ -9,6 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { ExpandMore } from '@material-ui/icons'
 import RatingContainer from './RatingContainer';
 import TastedContainer from './TastedContainer';
+import DeleteTastingContainer from './DeleteTastingContainer';
 
 const SUBMISSION_STYLE = {
   maxWidth: '70%',
@@ -52,6 +53,7 @@ export class TastingSubmission extends React.Component {
               <RatingContainer user={user} tasting={tasting} />
             </ListItem>
             <TastedContainer user={user} tasting={tasting} />
+            <DeleteTastingContainer user={user} tasting={tasting} />
           </List>
         </ExpansionPanelDetails>
       </ExpansionPanel>
